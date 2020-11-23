@@ -1,0 +1,154 @@
+1.  sudo apt update
+    Hasilnya : 
+    Hit:1 http://dl.google.com/linux/chrome/deb stable InRelease                                          
+    Hit:2 http://packages.microsoft.com/repos/vscode stable InRelease                                     
+    Hit:3 http://id.archive.ubuntu.com/ubuntu focal InRelease                                             
+    Get:4 http://security.ubuntu.com/ubuntu focal-security InRelease [107 kB]
+    Get:5 http://id.archive.ubuntu.com/ubuntu focal-updates InRelease [111 kB]
+    Get:6 http://id.archive.ubuntu.com/ubuntu focal-backports InRelease [98,3 kB]
+    Get:7 http://id.archive.ubuntu.com/ubuntu focal-updates/main i386 Packages [378 kB]
+    Get:8 http://security.ubuntu.com/ubuntu focal-security/main amd64 DEP-11 Metadata [24,2 kB]
+    Get:9 http://id.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [670 kB]   
+    Get:10 http://security.ubuntu.com/ubuntu focal-security/universe amd64 DEP-11 Metadata [56,6 kB]
+    Get:11 http://id.archive.ubuntu.com/ubuntu focal-updates/main amd64 DEP-11 Metadata [236 kB]
+    Get:12 http://id.archive.ubuntu.com/ubuntu focal-updates/universe i386 Packages [517 kB]
+    Get:13 http://id.archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [695 kB]
+    Get:14 http://id.archive.ubuntu.com/ubuntu focal-updates/universe amd64 DEP-11 Metadata [205 kB]
+    Get:15 http://id.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 DEP-11 Metadata [2.468 B]
+    Get:16 http://id.archive.ubuntu.com/ubuntu focal-backports/universe amd64 DEP-11 Metadata [1.768 B]
+    Fetched 3.102 kB in 28s (109 kB/s)  
+    Reading package lists... Done
+    Building dependency tree       
+    Reading state information... Done
+    All packages are up to date.
+
+2.  ls -R
+    Hasilnya :
+    Desktop  Documents  Downloads  Music  Pictures  Public  snap  Templates  Videos  wget-log
+    ./Desktop:
+
+    ./Documents:
+    praxis-academy
+
+    ./Documents/praxis-academy:
+    kemampuan-dasar-1
+
+    ./Documents/praxis-academy/kemampuan-dasar-1:
+    cmdline.txt  latihan
+
+    ./Documents/praxis-academy/kemampuan-dasar-1/latihan:
+    env.txt  GRUB.txt  kernel-linux.txt
+
+    ./Downloads:
+    code_1.51.1-1605051630_amd64.deb  google-chrome-stable_current_amd64.deb
+
+    ./Music:
+
+    ./Pictures:
+
+    ./Public:
+
+    ./snap:
+    snap-store
+
+    ./snap/snap-store:
+    467  481  common  current
+
+    ./snap/snap-store/467:
+
+    ./snap/snap-store/481:
+
+    ./snap/snap-store/common:
+
+    ./Templates:
+
+    ./Videos:
+
+3.  ls -al
+    Hasilnya :
+    total 100
+    drwxr-xr-x 20 evan evan 4096 Nov 20 19:19 .
+    drwxr-xr-x  4 root root 4096 Nov 19 20:06 ..
+    -rw-------  1 evan evan  548 Nov 20 19:24 .bash_history
+    -rw-r--r--  1 evan evan  220 Nov 19 20:06 .bash_logout
+    -rw-r--r--  1 evan evan 3771 Nov 19 20:06 .bashrc
+    drwxrwxr-x 18 evan evan 4096 Nov 21 13:24 .cache
+    drwx------ 18 evan evan 4096 Nov 21 13:24 .config
+    drwxr-xr-x  2 evan evan 4096 Nov 19 22:10 Desktop
+    drwxr-xr-x  3 evan evan 4096 Nov 20 19:07 Documents
+    drwxr-xr-x  2 evan evan 4096 Nov 20 10:59 Downloads
+    drwx------  3 evan evan 4096 Nov 20 18:36 .gnupg
+    drwxr-xr-x  3 evan evan 4096 Nov 19 22:10 .local
+    drwx------  5 evan evan 4096 Nov 19 22:10 .mozilla
+    drwxr-xr-x  2 evan evan 4096 Nov 19 22:10 Music
+    drwxr-xr-x  2 evan evan 4096 Nov 19 22:10 Pictures
+    drwx------  3 evan evan 4096 Nov 20 08:46 .pki
+    -rw-r--r--  1 evan evan  807 Nov 19 20:06 .profile
+    drwxr-xr-x  2 evan evan 4096 Nov 19 22:10 Public
+    drwxr-xr-x  3 evan evan 4096 Nov 19 22:22 snap
+    drwx------  2 evan evan 4096 Nov 19 22:21 .ssh
+    -rw-r--r--  1 evan evan    0 Nov 20 08:52 .sudo_as_admin_successful
+    drwxr-xr-x  2 evan evan 4096 Nov 19 22:10 Templates
+    drwxr-xr-x  2 evan evan 4096 Nov 19 22:10 Videos
+    drwxrwxr-x  3 evan evan 4096 Nov 20 18:49 .vscode
+    -rw-rw-r--  1 evan evan  211 Nov 20 19:19 .wget-hsts
+    -rw-rw-r--  1 evan evan    0 Nov 20 19:19 wget-log
+    drwxrwxr-x  4 evan evan 4096 Nov 20 09:34 .wine
+
+4.  ls -a
+    Hasilnya :
+    .              .bashrc  Documents  .mozilla  .profile  .sudo_as_admin_successful  .wget-hsts
+    ..             .cache   Downloads  Music     Public    Templates                  wget-log
+    .bash_history  .config  .gnupg     Pictures  snap      Videos                     .wine
+    .bash_logout   Desktop  .local     .pki      .ssh      .vscode
+
+5.  cat > sample1
+    cat > sample2
+    (Untuk membuat file baru)
+
+6.  cat sample1
+    cat sample2
+    (Untuk melihat file yg tadi dibuat)
+
+7.  cat sample1 sample2 > sample (digabungkan)
+    jika dipanggil cukup "cat sample" maka akan muncul :
+    sample1
+    sample2
+
+8.  Untuk menghapus file perlu ditampilkan dahulu dengan ls, kemudian
+    rm sample1
+
+9.  Menampilkan perintah yg telah digunakan
+    "history"
+
+    1  winetricks vcrun2008
+    2  sudo apt-get install wine && apt-get install winetricks
+    3  winetricks vcrun2008
+    4  sudo apt-get install wine
+    5  sudo apt-get install winetricks
+    6  winetricks vcrun2008
+    7  sudo apt update
+    8  apt list --upgradable
+    9  sudo apt upgrade
+   10  sudo apt install gdm3
+   11  cat /etc/x11/default-display-manager
+   12  systemctl status display-manager
+   13  echo $0
+   14  bash-c"$(wget-qO-https://git.io/vQgMr)"
+   15  sudo apt-get install dconf-cli uuid-runtime
+   16  bash-c "$(wget -qO- https://git.io/vQgMr)"
+   17  bash-c"$(wget-qO-https://git.io/vQgMr)"
+   18  apt-get install figlet
+   19  no
+   20  apt-get install figlet
+   21  ls /boot/
+   22  sudo apt update
+   23  -$ ls -R
+   24  ls -R
+   25  ls -al
+   26  ls -a
+   27  cat coba1
+   28  cat > coba1
+   29  cat>sample1
+   30  history
+

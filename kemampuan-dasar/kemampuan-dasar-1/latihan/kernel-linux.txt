@@ -1,0 +1,1 @@
+versi kernel yg digunakan adalah 5.4.0-54-generic

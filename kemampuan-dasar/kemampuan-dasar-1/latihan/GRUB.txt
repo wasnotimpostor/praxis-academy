@@ -1,0 +1,1 @@
+GRUB yg digunakan adalah versi 2.04
