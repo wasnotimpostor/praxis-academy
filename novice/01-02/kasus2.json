@@ -1,0 +1,24 @@
+{
+    "anime" : [ 
+        {
+            "judul" : "Kimetsu no Yaiba",
+            "tokohUtama" : "Tanjiro",
+            "gender" : "Laki-laki",
+            "senjata" : "Pedang"
+        },
+
+        {
+            "judul" : "Hunter x Hunter",
+            "tokohUtama" : "Gon",
+            "gender" : "Laki-laki",
+            "senjata" : "Pancingan"
+        },
+
+        {
+            "judul" : "Tower of God",
+            "tokohUtama" : "Bam",
+            "gender" : "Laki-laki",
+            "senjata" : "Tangan kosong"
+        }
+    ]
+}

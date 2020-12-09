@@ -1,0 +1,19 @@
+<class>
+    <judul anime = "Kimetsu no Yaiba">
+        <tokohUtama>Tanjiro</tokohUtama>
+        <gender>Laki-laki</gender>
+        <senjata>Pedang</senjata>
+    </judul>
+
+    <judul anime = "Hunter x Hunter">
+        <tokohUtama>Gon</tokohUtama>
+        <gender>Laki-laki</gender>
+        <senjata>Pancingan</senjata>
+    </judul>
+
+    <judul anime = "Tower of God">
+        <tokohUtama>Bam</tokohUtama>
+        <gender>Laki-laki</gender>
+        <senjata>Tangan kosong</senjata>
+    </judul>
+</class>

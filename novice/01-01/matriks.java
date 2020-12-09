@@ -4,7 +4,6 @@ public class matriks {
     public static void main(String[] args) {
         int[][] contoh = new int [5][5];
 
-        contoh[2][1] = 1;
         contoh[2][2] = 1;
         for (int i = 1; i < 4; i++){
             contoh[i][3] = 1;
