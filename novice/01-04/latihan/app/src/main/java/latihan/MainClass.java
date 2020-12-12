@@ -12,10 +12,10 @@ public class MainClass {
             System.out.println("\tAnda miskin?");
             System.out.println("\tMakanya kerja!");
         } else if (BalanceInquiry.balance <= 500) {
-            System.out.println("\tDuwitmu ra cukup cok");
+            System.out.println("\tDuwitmu ra cukup");
             System.out.println("\tNdang diisi lur");
         } else if (Withdraw.withdraw > BalanceInquiry.balance) {
-            System.out.println("\tLha matane picek, ra cukup cok!");
+            System.out.println("\tLha matane picek, ra cukup kuwi!");
             System.out.println("\tLiat dulu jumlahnya sianying");
         } else {
             BalanceInquiry.balance = BalanceInquiry.balance - Withdraw.withdraw;
