@@ -1,0 +1,5 @@
+The @Ignore annotation allow to statically ignore a test. Alternatively you can use Assume.assumeFalse or Assume.assumeTrue to define a condition for the test. 
+Assume.assumeFalse marks the test as invalid, if its condition evaluates to true. Assume.assumeTrue evaluates the test as invalid if its condition evaluates to false. 
+For example, the following disables a test on Linux:
+
+Assume.assumeFalse(System.getProperty("os.name").contains("Linux"));
