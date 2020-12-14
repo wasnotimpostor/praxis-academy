@@ -9,7 +9,7 @@ public class Bucket<E1, E2> {
         this.second = second;
     }
 
-    public E1 getFIrst() {
+    public E1 getFirst() {
         return first;
     }
 

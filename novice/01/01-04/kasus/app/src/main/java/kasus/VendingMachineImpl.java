@@ -125,7 +125,7 @@ public class VendingMachineImpl implements VendingMachine {
     public void printStats() {
         System.out.println("Total Sales : " + totalSales);
         System.out.println("Current item inventory : " + itemInventory);
-        System.out.println("Current cash inventory : " +cashInventory);
+        System.out.println("Current cash inventory : " + cashInventory);
     }
 
     private boolean hasSufficientChange() {
