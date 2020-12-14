@@ -19,9 +19,9 @@ public class Main {
         persegiPanjang.lebar = 5;
 
         // membuat objek segitiga
-        Segitiga segitiga = new Segitiga();
-        segitiga.tinggi = 5;
-        segitiga.alas = 2;
+        Segitiga mSegitiga = new Segitiga();
+        mSegitiga.tinggi = 10;
+        mSegitiga.alas = 2;
 
         // memanggil method luas dan keliling
         bangunDatar.luas();
@@ -36,7 +36,7 @@ public class Main {
         lingkaran.luas();
         lingkaran.keliling();
 
-        segitiga.luas();
-        segitiga.keliling();
+        mSegitiga.luas();
+        mSegitiga.keliling();
     }
 }
