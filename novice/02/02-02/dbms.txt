@@ -1,0 +1,9 @@
+alter table properties add foreign key (id) references users (id);          // untuk constraints (menghubungkan antar table)
+           (nama table)              (atribut)         (table tujuan & atributnya)
+
+create table users (id_users int no null primary key, nama varchar no null (50), alamat varchar no null (50));      // untuk create table
+
+alter table pembelians add primary keys (id);
+
+delete from users id = 301;
+        (nama table)
