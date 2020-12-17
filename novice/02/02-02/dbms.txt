@@ -7,3 +7,6 @@ alter table pembelians add primary keys (id);
 
 delete from users id = 301;
         (nama table)
+
+insert into users values (xxxxxxxxxxx);
+        (nama table)      (isi table)
