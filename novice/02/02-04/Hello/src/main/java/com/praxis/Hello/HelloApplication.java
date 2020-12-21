@@ -13,7 +13,7 @@ public class HelloApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HelloApplication.class, args);
 	}
-	@GetMapping("/hello")
+	@GetMapping("/hello") // ini nanti yg dipanggil di localhost, jadi localhost:8080/hello
 	public String hello() {
 		return String.format("hello world");
 	}
