@@ -48,6 +48,7 @@ public class MainController {
         .map(murid->{
             murid.setNama(newMurid.getNama());
             murid.setId(newMurid.getId());
+            murid.setUmur(newMurid.getUmur());
             return muridRepo.save(murid);
         })
         .orElseGet(()->{
