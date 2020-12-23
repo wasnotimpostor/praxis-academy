@@ -36,7 +36,7 @@ public class MainController {
         return kasirRepo.findById(id);
     }
 
-    @DeleteMapping(path = "/")
+    @DeleteMapping(path = "/{id}")
     public void deleteKasir(@PathVariable Long id) {
         kasirRepo.deleteById(id);
     }
