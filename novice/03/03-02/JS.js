@@ -86,3 +86,8 @@ do {
     yourName = prompt("Siapa namamu?");     // input nama
 } while(!yourName);     // looping terus
 console.log(yourName);
+
+// for loops
+for (let a = 0; a <= 12; a += 2) {
+    console.log(a)
+}
