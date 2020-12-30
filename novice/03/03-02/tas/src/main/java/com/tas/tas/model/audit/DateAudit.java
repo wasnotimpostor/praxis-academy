@@ -1,4 +1,4 @@
-package com.tas.tas.audit;
+package com.tas.tas.model.audit;
 
 import java.io.Serializable;
 import java.time.Instant;

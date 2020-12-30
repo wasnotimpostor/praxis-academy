@@ -16,7 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import com.tas.tas.audit.DateAudit;
+import com.tas.tas.model.audit.DateAudit;
 
 
 @Entity
