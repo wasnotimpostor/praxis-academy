@@ -13,9 +13,9 @@ public class TestRestAPIs {
     return ">>> User Contents!";
   }
   
-  @GetMapping("/api/auth/pm")
-  @PreAuthorize("hasRole('PM') or hasRole('ADMIN')")
-  public String projectManagementAccess() {
+  @GetMapping("/api/auth/gembel")
+  @PreAuthorize("hasRole('GEMBEL') or hasRole('ADMIN')")
+  public String gembelAccess() {
     return ">>> Board Management Project";
   }
   

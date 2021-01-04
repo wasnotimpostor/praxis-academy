@@ -68,12 +68,12 @@ public class AuthRestAPIs {
     @PostMapping("/signup")
     public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return new ResponseEntity<String>("Fail -> Username is already taken!",
+            return new ResponseEntity<String>("GAGAL -> Username sudah dipakai",
                     HttpStatus.BAD_REQUEST);
         }
  
         if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity<String>("Fail -> Email is already in use!",
+            return new ResponseEntity<String>("GAGAL -> Email sudah dipakai",
                     HttpStatus.BAD_REQUEST);
         }
  
@@ -92,10 +92,10 @@ public class AuthRestAPIs {
             roles.add(adminRole);
             
             break;
-          case "pm":
-                Role pmRole = roleRepository.findByName(RoleName.ROLE_PM)
+          case "gembel":
+                Role gembelRole = roleRepository.findByName(RoleName.ROLE_GEMBEL)
                   .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-                roles.add(pmRole);
+                roles.add(gembelRole);
                 
             break;
           default:

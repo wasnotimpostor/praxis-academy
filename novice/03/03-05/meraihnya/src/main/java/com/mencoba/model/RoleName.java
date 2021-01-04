@@ -2,6 +2,6 @@ package com.mencoba.model;
 
 public enum  RoleName {
     ROLE_USER,
-    ROLE_PM,
+    ROLE_GEMBEL,
     ROLE_ADMIN
 }
