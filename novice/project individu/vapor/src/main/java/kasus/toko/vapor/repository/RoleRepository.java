@@ -10,5 +10,5 @@ import kasus.toko.vapor.model.NamaRole;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
-    Optional<Role> findByName(NamaRole roleName);
+    Optional<Role> findByNama(NamaRole namaRole);
 }

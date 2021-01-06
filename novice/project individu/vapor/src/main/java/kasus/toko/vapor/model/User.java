@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+//import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
@@ -26,15 +26,15 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(min = 3, max = 30)
+    //@Size(min = 3, max = 50)
     private String nama;
 
     @NotBlank
-    @Size(min = 3, max = 30)
+    //@Size(min = 3, max = 50)
     private String username;
 
     @NotBlank
-    @Size(min = 5, max = 30)
+    //@Size(min = 5, max = 30)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)

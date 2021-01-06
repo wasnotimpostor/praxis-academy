@@ -42,13 +42,13 @@ public class UserPrinciple implements UserDetails {
     public static UserPrinciple build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
             new SimpleGrantedAuthority(role.getNama().name())).collect(Collectors.toList());
-        return new UserPrinciple(
-            user.getId(),
-            user.getNama(),
-            user.getPassword(),
-            user.getUsername(),
-            authorities
-        );
+            return new UserPrinciple(
+                user.getId(),
+                user.getNama(),
+                user.getPassword(),
+                user.getUsername(),
+                authorities
+            );
     }
 
     public Long getId() {
@@ -68,36 +68,36 @@ public class UserPrinciple implements UserDetails {
     }
 
     @Override
-      public Collection<? extends GrantedAuthority> getAuthorities() {
-          return authorities;
-      }
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
    
-      @Override
-      public boolean isAccountNonExpired() {
-          return true;
-      }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
    
-      @Override
-      public boolean isAccountNonLocked() {
-          return true;
-      }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
    
-      @Override
-      public boolean isCredentialsNonExpired() {
-          return true;
-      }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
    
-      @Override
-      public boolean isEnabled() {
-          return true;
-      }
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
    
-      @Override
-      public boolean equals(Object o) {
-          if (this == o) return true;
-          if (o == null || getClass() != o.getClass()) return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
           
-          UserPrinciple user = (UserPrinciple) o;
-          return Objects.equals(id, user.id);
-      }
+        UserPrinciple user = (UserPrinciple) o;
+        return Objects.equals(id, user.id);
+    }
 }

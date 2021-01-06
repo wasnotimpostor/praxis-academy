@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
     @UniqueConstraint(columnNames = {"id"}),
     @UniqueConstraint(columnNames = {"id_barang"})
 })
-public class Toko1 {
+public class Toko2 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
