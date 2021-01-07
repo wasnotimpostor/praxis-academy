@@ -1,4 +1,4 @@
-package com.mencoba.security.services;
+package com.impian.security.services;
 
 import java.util.Collection;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mencoba.model.User;
+import com.impian.model.User;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,20 +21,17 @@ public class UserPrinciple implements UserDetails {
    
       private String username;
    
-      private String email;
-   
       @JsonIgnore
       private String password;
    
       private Collection<? extends GrantedAuthority> authorities;
    
       public UserPrinciple(Long id, String name, 
-                String username, String email, String password, 
+                String username, String password, 
                 Collection<? extends GrantedAuthority> authorities) {
           this.id = id;
           this.name = name;
           this.username = username;
-          this.email = email;
           this.password = password;
           this.authorities = authorities;
       }
@@ -47,7 +44,6 @@ public class UserPrinciple implements UserDetails {
                   user.getId(),
                   user.getName(),
                   user.getUsername(),
-                  user.getEmail(),
                   user.getPassword(),
                   authorities
           );
@@ -59,10 +55,6 @@ public class UserPrinciple implements UserDetails {
    
       public String getName() {
           return name;
-      }
-   
-      public String getEmail() {
-          return email;
       }
    
       @Override

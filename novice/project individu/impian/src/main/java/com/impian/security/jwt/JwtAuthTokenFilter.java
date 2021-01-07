@@ -1,6 +1,4 @@
-package com.mencoba.security.jwt;
-
-import com.mencoba.security.services.UserDetailsServiceImpl;
+package com.impian.security.jwt;
 
 import java.io.IOException;
 
@@ -8,6 +6,8 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.impian.security.services.UserDetailsServiceImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

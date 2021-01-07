@@ -1,8 +1,8 @@
-package com.mencoba.security.jwt;
-
-import com.mencoba.security.services.UserPrinciple;
+package com.impian.security.jwt;
 
 import java.util.Date;
+
+import com.impian.security.services.UserPrinciple;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

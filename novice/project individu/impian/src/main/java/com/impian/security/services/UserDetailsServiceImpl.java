@@ -1,9 +1,9 @@
-package com.mencoba.security.services;
-
-import com.mencoba.model.User;
-import com.mencoba.repository.UserRepository;
+package com.impian.security.services;
 
 import javax.transaction.Transactional;
+
+import com.impian.model.User;
+import com.impian.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
       
         User user = userRepository.findByUsername(username)
                   .orElseThrow(() -> 
-                        new UsernameNotFoundException("User Not Found with -> username or email : " + username)
+                        new UsernameNotFoundException("User Not Found" + username)
         );
  
         return UserPrinciple.build(user);
