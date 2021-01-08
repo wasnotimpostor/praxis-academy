@@ -4,18 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "barang", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"item"})})
+@Table(name = "barang")
 public class Barang {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_barang;
 
     @NotBlank
     private String item;
@@ -26,12 +26,12 @@ public class Barang {
     @NotBlank
     private Integer stock;
 
-    public Long getId() {
-        return id;
+    public Long getId_barang() {
+        return id_barang;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId_barang(Long id_barang) {
+        this.id_barang = id_barang;
     }
 
     public String getItem() {

@@ -9,13 +9,15 @@ import javax.validation.Valid;
 import com.impian.message.request.LoginForm;
 import com.impian.message.request.SignUpForm;
 import com.impian.message.response.JwtResponse;
+import com.impian.model.Barang;
 import com.impian.model.Role;
 import com.impian.model.RoleName;
-import com.impian.model.Toko1;
+import com.impian.model.Toko;
 import com.impian.model.User;
+import com.impian.repository.BarangRepository;
 import com.impian.repository.RoleRepository;
 import com.impian.repository.UserRepository;
-import com.impian.repository.Toko1Repository;
+import com.impian.repository.TokoRepository;
 import com.impian.security.jwt.JwtProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,10 @@ public class AuthRestAPIs {
   RoleRepository roleRepository;
 
   @Autowired
-  Toko1Repository toko1Repository;
+  TokoRepository tokoRepository;
+
+  @Autowired
+  BarangRepository barangRepository;
  
   @Autowired
   PasswordEncoder encoder;
@@ -86,21 +91,24 @@ public class AuthRestAPIs {
         strRoles.forEach(role -> {
           switch(role) {
           case "admin":
-            Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
-                  .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-            roles.add(adminRole);
-            break;
-          
+                Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+                  .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
+                roles.add(adminRole);
+                break;          
           case "toko1":
                 Role toko1Role = roleRepository.findByName(RoleName.ROLE_TOKO1)
-                  .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+                  .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
                 roles.add(toko1Role);
-                
-            break;
+                break;
+          case "toko2" :
+                Role toko2Role = roleRepository.findByName(RoleName.ROLE_TOKO2)
+                  .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
+                  roles.add(toko2Role);
+                break;
           default:
-              Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                  .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-              roles.add(userRole);              
+              Role buyerRole = roleRepository.findByName(RoleName.ROLE_BUYER)
+                  .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
+              roles.add(buyerRole);              
           }
         });
         
@@ -124,7 +132,7 @@ public class AuthRestAPIs {
   
   @GetMapping("/admin")
   @PreAuthorize("hasRole('ADMIN')")
-  public @ResponseBody List<Toko1> getAllToko() {
-    return toko1Repository.findAll();
+  public @ResponseBody List<Toko> getAllToko() {
+    return tokoRepository.findAll();
   }
 }
