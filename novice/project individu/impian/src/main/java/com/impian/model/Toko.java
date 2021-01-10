@@ -31,7 +31,7 @@ public class Toko {
 
     @ManyToOne
     @JoinColumn(name = "id_barang", referencedColumnName = "id_barang", insertable = false, updatable = false)
-    private Barang barang;;
+    private Barang barang;
 
     public Barang getBarang() {
         return barang;

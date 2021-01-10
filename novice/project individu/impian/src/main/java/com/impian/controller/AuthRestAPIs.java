@@ -1,41 +1,29 @@
 package com.impian.controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.validation.Valid;
-
 import com.impian.message.request.LoginForm;
 import com.impian.message.request.SignUpForm;
 import com.impian.message.response.JwtResponse;
-import com.impian.model.Barang;
-import com.impian.model.Role;
-import com.impian.model.RoleName;
-import com.impian.model.Toko;
-import com.impian.model.User;
+import com.impian.model.*;
 import com.impian.repository.BarangRepository;
 import com.impian.repository.RoleRepository;
-import com.impian.repository.UserRepository;
 import com.impian.repository.TokoRepository;
+import com.impian.repository.UserRepository;
 import com.impian.security.jwt.JwtProvider;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -79,7 +67,7 @@ public class AuthRestAPIs {
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return new ResponseEntity<String>("GAGAL -> Username sudah dipakai", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("GAGAL -> Username sudah dipakai", HttpStatus.BAD_REQUEST);
         }
  
         // Creating user's account
@@ -135,4 +123,12 @@ public class AuthRestAPIs {
   public @ResponseBody List<Toko> getAllToko() {
     return tokoRepository.findAll();
   }
+
+  @GetMapping("/admin/barang")
+  @PreAuthorize("hasRole('ADMIN')")
+  public @ResponseBody List<Barang> getAllBarang() { return barangRepository.findAll(); }
+
+  @GetMapping("/admin/users")
+    @PreAuthorize("hasRole('ADMIN')")
+    public  @ResponseBody List<User> getAllUsers() { return userRepository.findAll(); }
 }
