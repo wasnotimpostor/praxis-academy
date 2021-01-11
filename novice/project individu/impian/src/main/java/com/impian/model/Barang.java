@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "barang")
 public class Barang {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_barang;
@@ -20,10 +20,8 @@ public class Barang {
     @NotBlank
     private String item;
 
-    @NotBlank
-    private Double price;
+    private Integer price;
 
-    @NotBlank
     private Integer stock;
 
     public Long getId_barang() {
@@ -42,11 +40,11 @@ public class Barang {
         this.item = item;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

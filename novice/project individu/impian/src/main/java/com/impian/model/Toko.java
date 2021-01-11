@@ -15,18 +15,15 @@ import javax.validation.constraints.NotBlank;
     @UniqueConstraint(columnNames = {"name"})
 })
 public class Toko {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_toko;
 
-    @NotBlank
     private Long id_barang;
 
-    @NotBlank
     private String name;
 
-    @NotBlank
     private String alamat;
 
     @ManyToOne

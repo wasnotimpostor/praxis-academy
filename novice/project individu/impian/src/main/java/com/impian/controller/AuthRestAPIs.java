@@ -29,106 +29,113 @@ import java.util.Set;
 @RestController
 @RequestMapping("/kasus")
 public class AuthRestAPIs {
- 
-  @Autowired
-  AuthenticationManager authenticationManager;
- 
-  @Autowired
-  UserRepository userRepository;
- 
-  @Autowired
-  RoleRepository roleRepository;
 
-  @Autowired
-  TokoRepository tokoRepository;
+    @Autowired
+    AuthenticationManager authenticationManager;
 
-  @Autowired
-  BarangRepository barangRepository;
- 
-  @Autowired
-  PasswordEncoder encoder;
- 
-  @Autowired
-  JwtProvider jwtProvider;
- 
-  @PostMapping("/login")
-  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
- 
-      Authentication authentication = authenticationManager.authenticate(
-              new UsernamePasswordAuthenticationToken(
-                      loginRequest.getUsername(),
-                      loginRequest.getPassword()));
-    SecurityContextHolder.getContext().setAuthentication(authentication);
- 
-    String jwt = jwtProvider.generateJwtToken(authentication);
-    return ResponseEntity.ok(new JwtResponse(jwt));
-  }
- 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    TokoRepository tokoRepository;
+
+    @Autowired
+    BarangRepository barangRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
+
+    @Autowired
+    JwtProvider jwtProvider;
+
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.getUsername(),
+                        loginRequest.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String jwt = jwtProvider.generateJwtToken(authentication);
+        return ResponseEntity.ok(new JwtResponse(jwt));
+    }
+
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
-        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>("GAGAL -> Username sudah dipakai", HttpStatus.BAD_REQUEST);
         }
- 
+
         // Creating user's account
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), encoder.encode(signUpRequest.getPassword()));
- 
+
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
- 
+
         strRoles.forEach(role -> {
-          switch(role) {
-          case "admin":
-                Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
-                  .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
-                roles.add(adminRole);
-                break;          
-          case "toko1":
-                Role toko1Role = roleRepository.findByName(RoleName.ROLE_TOKO1)
-                  .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
-                roles.add(toko1Role);
-                break;
-          case "toko2" :
-                Role toko2Role = roleRepository.findByName(RoleName.ROLE_TOKO2)
-                  .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
-                  roles.add(toko2Role);
-                break;
-          default:
-              Role buyerRole = roleRepository.findByName(RoleName.ROLE_BUYER)
-                  .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
-              roles.add(buyerRole);              
-          }
+            switch (role) {
+                case "admin":
+                    Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+                            .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
+                    roles.add(adminRole);
+                    break;
+                case "toko1":
+                    Role toko1Role = roleRepository.findByName(RoleName.ROLE_TOKO1)
+                            .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
+                    roles.add(toko1Role);
+                    break;
+                case "toko2":
+                    Role toko2Role = roleRepository.findByName(RoleName.ROLE_TOKO2)
+                            .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
+                    roles.add(toko2Role);
+                    break;
+                default:
+                    Role buyerRole = roleRepository.findByName(RoleName.ROLE_BUYER)
+                            .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
+                    roles.add(buyerRole);
+            }
         });
-        
+
         user.setRoles(roles);
         userRepository.save(user);
- 
+
         return ResponseEntity.ok().body("Register berhasil gaes!");
     }
 
-  @GetMapping("/api/auth/user")
-  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-  public String userAccess() {
-    return ">>> User Contents!";
-  }
-  
-  @GetMapping("/api/auth/gembel")
-  @PreAuthorize("hasRole('GEMBEL') or hasRole('ADMIN')")
-  public String gembelAccess() {
-    return ">>> Gembel Contents!";
-  }
-  
-  @GetMapping("/admin")
-  @PreAuthorize("hasRole('ADMIN')")
-  public @ResponseBody List<Toko> getAllToko() {
-    return tokoRepository.findAll();
-  }
-
-  @GetMapping("/admin/barang")
-  @PreAuthorize("hasRole('ADMIN')")
-  public @ResponseBody List<Barang> getAllBarang() { return barangRepository.findAll(); }
-
-  @GetMapping("/admin/users")
+    @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
-    public  @ResponseBody List<User> getAllUsers() { return userRepository.findAll(); }
+    public @ResponseBody
+    List<Toko> getAllToko() {
+        return tokoRepository.findAll();
+    }
+
+    @GetMapping("/admin/barang")
+    @PreAuthorize("hasRole('ADMIN')")
+    public @ResponseBody
+    List<Barang> getAllBarang() {
+        return barangRepository.findAll();
+    }
+
+    @GetMapping("/admin/users")
+    @PreAuthorize("hasRole('ADMIN')")
+    public @ResponseBody
+    List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @PostMapping( "/admin/add-barang")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Barang add(@RequestBody Barang barang) {
+        return barangRepository.save(barang);
+    }
+
+    @PostMapping( "/admin/add-toko")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Toko addToko(@RequestBody Toko toko) {
+        return tokoRepository.save(toko);
+    }
 }
