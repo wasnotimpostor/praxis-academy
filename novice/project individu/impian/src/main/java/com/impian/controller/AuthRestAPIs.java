@@ -3,7 +3,11 @@ package com.impian.controller;
 import com.impian.message.request.LoginForm;
 import com.impian.message.request.SignUpForm;
 import com.impian.message.response.JwtResponse;
-import com.impian.model.*;
+import com.impian.model.Barang;
+import com.impian.model.Role;
+import com.impian.model.RoleName;
+import com.impian.model.Toko;
+import com.impian.model.User;
 import com.impian.repository.BarangRepository;
 import com.impian.repository.RoleRepository;
 import com.impian.repository.TokoRepository;
@@ -83,16 +87,16 @@ public class AuthRestAPIs {
                             .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
                     roles.add(adminRole);
                     break;
-                case "toko1":
-                    Role toko1Role = roleRepository.findByName(RoleName.ROLE_TOKO1)
-                            .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
-                    roles.add(toko1Role);
-                    break;
-                case "toko2":
-                    Role toko2Role = roleRepository.findByName(RoleName.ROLE_TOKO2)
-                            .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
-                    roles.add(toko2Role);
-                    break;
+//                case "toko1":
+//                    Role toko1Role = roleRepository.findByName(RoleName.ROLE_TOKO1)
+//                            .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
+//                    roles.add(toko1Role);
+//                    break;
+//                case "toko2":
+//                    Role toko2Role = roleRepository.findByName(RoleName.ROLE_TOKO2)
+//                            .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));
+//                    roles.add(toko2Role);
+//                    break;
                 default:
                     Role buyerRole = roleRepository.findByName(RoleName.ROLE_BUYER)
                             .orElseThrow(() -> new RuntimeException("Role tidak ditemukan!"));

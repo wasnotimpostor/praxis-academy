@@ -43,7 +43,7 @@ public class User{
     @JoinTable(name = "user_roles", 
       joinColumns = @JoinColumn(name = "user_id"), 
       inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    private Set<com.impian.model.Role> roles = new HashSet<>();
  
     public User() {}
  
@@ -85,11 +85,11 @@ public class User{
         this.password = password;
     }
  
-    public Set<Role> getRoles() {
+    public Set<com.impian.model.Role> getRoles() {
         return roles;
     }
  
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<com.impian.model.Role> roles) {
         this.roles = roles;
     }
 }

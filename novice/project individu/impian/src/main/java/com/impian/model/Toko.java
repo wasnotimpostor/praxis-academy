@@ -7,17 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "toko", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"name"})
-})
+@Table(name = "toko")
 public class Toko {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_toko;
 
     private Long id_barang;
@@ -28,13 +23,13 @@ public class Toko {
 
     @ManyToOne
     @JoinColumn(name = "id_barang", referencedColumnName = "id_barang", insertable = false, updatable = false)
-    private Barang barang;
+    private com.impian.model.Barang barang;
 
-    public Barang getBarang() {
+    public com.impian.model.Barang getBarang() {
         return barang;
     }
 
-    public void setBarang(Barang barang) {
+    public void setBarang(com.impian.model.Barang barang) {
         this.barang = barang;
     }
 
