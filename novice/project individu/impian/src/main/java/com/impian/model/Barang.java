@@ -1,13 +1,9 @@
 package com.impian.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "barang")
@@ -15,7 +11,7 @@ public class Barang {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_barang;
+    private Long id;
 
     @NotBlank
     private String item;
@@ -24,12 +20,12 @@ public class Barang {
 
     private Integer stock;
 
-    public Long getId_barang() {
-        return id_barang;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_barang(Long id_barang) {
-        this.id_barang = id_barang;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getItem() {

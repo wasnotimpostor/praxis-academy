@@ -3,15 +3,8 @@ package com.impian.controller;
 import com.impian.message.request.LoginForm;
 import com.impian.message.request.SignUpForm;
 import com.impian.message.response.JwtResponse;
-import com.impian.model.Barang;
-import com.impian.model.Role;
-import com.impian.model.RoleName;
-import com.impian.model.Toko;
-import com.impian.model.User;
-import com.impian.repository.BarangRepository;
-import com.impian.repository.RoleRepository;
-import com.impian.repository.TokoRepository;
-import com.impian.repository.UserRepository;
+import com.impian.model.*;
+import com.impian.repository.*;
 import com.impian.security.jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,10 +37,13 @@ public class AuthRestAPIs {
     RoleRepository roleRepository;
 
     @Autowired
-    TokoRepository tokoRepository;
+    AllTokoRepository allTokoRepository;
 
     @Autowired
     BarangRepository barangRepository;
+
+    @Autowired
+    DistribusiRepository distribusiRepository;
 
     @Autowired
     PasswordEncoder encoder;
@@ -110,11 +106,16 @@ public class AuthRestAPIs {
         return ResponseEntity.ok().body("Register berhasil gaes!");
     }
 
+    @GetMapping("/admin/alltoko")
+    @PreAuthorize("hasRole('ADMIN')")
+    public @ResponseBody
+    List<AllToko> getToko() { return allTokoRepository.findAll(); }
+
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
     public @ResponseBody
-    List<Toko> getAllToko() {
-        return tokoRepository.findAll();
+    List<Distribusi> getDistribusi() {
+        return distribusiRepository.findAll();
     }
 
     @GetMapping("/admin/barang")
@@ -139,7 +140,13 @@ public class AuthRestAPIs {
 
     @PostMapping( "/admin/add-toko")
     @PreAuthorize("hasRole('ADMIN')")
-    public Toko addToko(@RequestBody Toko toko) {
-        return tokoRepository.save(toko);
+    public AllToko addToko(@RequestBody AllToko allToko) {
+        return allTokoRepository.save(allToko);
+    }
+
+    @PostMapping("/admin/add-distribusi")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Distribusi addDistribusi(@RequestBody Distribusi distribusi) {
+        return distribusiRepository.save(distribusi);
     }
 }
