@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -106,10 +107,16 @@ public class AuthRestAPIs {
         return ResponseEntity.ok().body("Register berhasil gaes!");
     }
 
-    @GetMapping("/admin/alltoko")
-    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/alltoko")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('BUYER')")
     public @ResponseBody
     List<AllToko> getToko() { return allTokoRepository.findAll(); }
+
+    @GetMapping(path = "alltoko/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('BUYER')")
+    public Optional<AllToko> idToko(@PathVariable Long id) {
+        return allTokoRepository.findById(id);
+    }
 
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
