@@ -107,11 +107,6 @@ public class AuthRestAPIs {
         return ResponseEntity.ok().body("Register berhasil gaes!");
     }
 
-    @GetMapping("/alltoko")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('BUYER')")
-    public @ResponseBody
-    List<AllToko> getToko() { return allTokoRepository.findAll(); }
-
     @GetMapping(path = "alltoko/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('BUYER')")
     public Optional<AllToko> idToko(@PathVariable Long id) {
@@ -125,12 +120,12 @@ public class AuthRestAPIs {
         return distribusiRepository.findAll();
     }
 
-    @GetMapping("/admin/barang")
-    @PreAuthorize("hasRole('ADMIN')")
-    public @ResponseBody
-    List<Barang> getAllBarang() {
-        return barangRepository.findAll();
-    }
+//    @GetMapping("/admin/barang")
+//    @PreAuthorize("hasRole('ADMIN')")
+//    public @ResponseBody
+//    List<Barang> getAllBarang() {
+//        return barangRepository.findAll();
+//    }
 
     @GetMapping("/admin/users")
     @PreAuthorize("hasRole('ADMIN')")
@@ -139,11 +134,11 @@ public class AuthRestAPIs {
         return userRepository.findAll();
     }
 
-    @PostMapping( "/admin/add-barang")
-    @PreAuthorize("hasRole('ADMIN')")
-    public Barang add(@RequestBody Barang barang) {
-        return barangRepository.save(barang);
-    }
+//    @PostMapping( "/admin/add-barang")
+//    @PreAuthorize("hasRole('ADMIN')")
+//    public Barang add(@RequestBody Barang barang) {
+//        return barangRepository.save(barang);
+//    }
 
     @PostMapping( "/admin/add-toko")
     @PreAuthorize("hasRole('ADMIN')")

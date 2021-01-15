@@ -20,18 +20,6 @@ public class AllToko {
 
     private String alamat;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id_barang", referencedColumnName = "id_barang", insertable = false, updatable = false)
-//    private Barang barang;
-//
-//    public Barang getBarang() {
-//        return barang;
-//    }
-//
-//    public void setBarang(Barang barang) {
-//        this.barang = barang;
-//    }
-
     public Long getId() {
         return id;
     }

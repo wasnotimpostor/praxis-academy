@@ -25,7 +25,7 @@ public class AllTokoController {
     @PostMapping("/alltoko/add")
     @PreAuthorize("hasRole('ADMIN')")
     public AllToko add(@RequestBody AllToko allToko) {
-        //long count = allTokoRepo.count();
+        long count = allTokoRepo.count();
         return allTokoRepo.save(allToko);
     }
 }
