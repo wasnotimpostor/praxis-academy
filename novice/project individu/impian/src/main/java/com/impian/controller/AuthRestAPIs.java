@@ -38,15 +38,6 @@ public class AuthRestAPIs {
     RoleRepository roleRepository;
 
     @Autowired
-    AllTokoRepository allTokoRepository;
-
-    @Autowired
-    BarangRepository barangRepository;
-
-    @Autowired
-    DistribusiRepository distribusiRepository;
-
-    @Autowired
     PasswordEncoder encoder;
 
     @Autowired
@@ -107,48 +98,12 @@ public class AuthRestAPIs {
         return ResponseEntity.ok().body("Register berhasil gaes!");
     }
 
-    @GetMapping(path = "alltoko/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('BUYER')")
-    public Optional<AllToko> idToko(@PathVariable Long id) {
-        return allTokoRepository.findById(id);
-    }
 
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public @ResponseBody
-    List<Distribusi> getDistribusi() {
-        return distribusiRepository.findAll();
-    }
-
-//    @GetMapping("/admin/barang")
-//    @PreAuthorize("hasRole('ADMIN')")
-//    public @ResponseBody
-//    List<Barang> getAllBarang() {
-//        return barangRepository.findAll();
-//    }
 
     @GetMapping("/admin/users")
     @PreAuthorize("hasRole('ADMIN')")
     public @ResponseBody
     List<User> getAllUsers() {
         return userRepository.findAll();
-    }
-
-//    @PostMapping( "/admin/add-barang")
-//    @PreAuthorize("hasRole('ADMIN')")
-//    public Barang add(@RequestBody Barang barang) {
-//        return barangRepository.save(barang);
-//    }
-
-    @PostMapping( "/admin/add-toko")
-    @PreAuthorize("hasRole('ADMIN')")
-    public AllToko addToko(@RequestBody AllToko allToko) {
-        return allTokoRepository.save(allToko);
-    }
-
-    @PostMapping("/admin/add-distribusi")
-    @PreAuthorize("hasRole('ADMIN')")
-    public Distribusi addDistribusi(@RequestBody Distribusi distribusi) {
-        return distribusiRepository.save(distribusi);
     }
 }
