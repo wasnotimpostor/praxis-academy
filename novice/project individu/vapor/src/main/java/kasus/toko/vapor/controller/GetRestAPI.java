@@ -18,7 +18,7 @@ import kasus.toko.vapor.repository.UserRepository;
 @RestController
 @RequestMapping
 public class GetRestAPI {
-    
+
     @Autowired
     public UserRepository userRepository;
 
@@ -27,13 +27,14 @@ public class GetRestAPI {
 
     @Autowired
     public Toko2Repository toko2Repository;
-    
+
     @Autowired
     public BarangRepository barangRepository;
 
     @GetMapping("/kasus/admin/getuser")
     @PreAuthorize("hasRole('ADMIN')")
-    public @ResponseBody List<User> getAllUser() {
+    public @ResponseBody
+    List<User> getAllUser() {
         return userRepository.findAll();
     }
 }

@@ -1,5 +1,4 @@
-Membuat sistem penjualan toko X
-Ada beberapa cabang toko
+Membuat sistem penjualan toko X Ada beberapa cabang toko
 
 Tabel :
 > cabang_toko(join table) : id_toko, nama_toko, alamat_toko

@@ -7,5 +7,5 @@ import kasus.toko.vapor.model.Barang;
 
 @Repository
 public interface BarangRepository extends JpaRepository<Barang, Long> {
-    
+
 }

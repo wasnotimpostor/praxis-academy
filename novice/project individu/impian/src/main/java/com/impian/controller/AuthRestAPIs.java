@@ -9,7 +9,6 @@ import com.impian.security.jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,8 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -36,6 +33,12 @@ public class AuthRestAPIs {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    BarangRepository barangRepository;
+
+    @Autowired
+    TokoRepository tokoRepository;
 
     @Autowired
     PasswordEncoder encoder;
@@ -98,12 +101,27 @@ public class AuthRestAPIs {
         return ResponseEntity.ok().body("Register berhasil gaes!");
     }
 
+    @PutMapping("/barang/{id}")
+    public Barang replace(@RequestBody Barang newBarang, @PathVariable Long id) {
+        return barangRepository.findById(id).map(barang -> {
+            barang.setPrice(newBarang.getPrice());
+            barang.setStock(newBarang.getStock());
+            return barangRepository.save(barang);
+        }).orElseGet(() -> {
+            newBarang.setId(id);
+            return barangRepository.save(newBarang);
+        });
+    }
 
-
-    @GetMapping("/admin/users")
-    @PreAuthorize("hasRole('ADMIN')")
-    public @ResponseBody
-    List<User> getAllUsers() {
-        return userRepository.findAll();
+    @PutMapping("/alltoko/{id}")
+    public Toko replace(@RequestBody Toko newToko, @PathVariable Long id) {
+        return tokoRepository.findById(id).map(toko -> {
+            toko.setName(newToko.getName());
+            toko.setAlamat(newToko.getAlamat());
+            return tokoRepository.save(toko);
+        }).orElseGet(() -> {
+            newToko.setId(id);
+            return tokoRepository.save(newToko);
+        });
     }
 }

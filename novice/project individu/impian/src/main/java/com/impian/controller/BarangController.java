@@ -1,50 +1,63 @@
 package com.impian.controller;
 
+import java.util.List;
+
 import com.impian.model.Barang;
-import com.impian.repository.BarangRepository;
+import com.impian.security.services.BarangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/kasus")
 public class BarangController {
 
     @Autowired
-    BarangRepository barangRepository;
+    private BarangService barangService;
 
     @GetMapping("/barang")
-    @PreAuthorize("hasRole('ADMIN')")
-    public @ResponseBody
-    List<Barang> getAllBarang() {
-        return barangRepository.findAll();
+    public List<Barang> getAllBarang() {
+        return barangService.getAllBarang();
     }
 
-    @PostMapping( "/add-barang")
+    @PostMapping("/barang/add")
     @PreAuthorize("hasRole('ADMIN')")
-    public Barang add(@RequestBody Barang barang) {
-        return barangRepository.save(barang);
+    public Barang addBarang(@RequestBody Barang barang) {
+        return barangService.addBarang(barang);
     }
 
-    @PutMapping("/barang/{id}")
+    @GetMapping("/barang/{id}")
+    public Barang getBarang(@PathVariable Long id) {
+        return barangService.getBarang(id);
+    }
+
+    @PutMapping("/barang/{id}/w/{quantity}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Barang replaceBarang(@RequestBody Barang newBarang, @PathVariable Long id) {
-        return barangRepository.findById(id).map(barang -> {
-            barang.setItem(newBarang.getItem());
-            barang.setPrice(newBarang.getPrice());
-            barang.setStock(newBarang.getStock());
-            return barangRepository.save(barang);
-        }) .orElseGet(() ->{
-            newBarang.setId(id);
-            return barangRepository.save(newBarang);
-        });
+    public Barang withdrawBarang(@PathVariable Long id, String quantity) {
+        Barang barang = barangService.getBarang(id);
+        String currQuantity = barang.getStock();
+        int newQuantity = Integer.parseInt(currQuantity) - Integer.parseInt(quantity);
+        if(newQuantity < 1) {
+            System.out.println("new quantity negatif" + newQuantity + "jadi gak bisa withdraw");
+            return barang;
+        }
+        barang.setStock(String.valueOf(newQuantity));
+        return barangService.updateBarang(id, barang);
+    }
+
+    @PutMapping("/barang/{id}/d/{quantity}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Barang depositBarang(@PathVariable Long id, @PathVariable String quantity) {
+        Barang barang = barangService.getBarang(id);
+        String currQuantity = barang.getStock();
+        int newQuantity = Integer.parseInt(currQuantity) + Integer.parseInt(quantity);
+        barang.setStock(String.valueOf(newQuantity));
+        return barangService.updateBarang(id, barang);
     }
 
     @DeleteMapping("/barang/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public void deleteBarang(@PathVariable Long id) {
-        barangRepository.deleteById(id);
+    public Barang deleteBarang(@PathVariable Long id) {
+        return barangService.deleteBarang(id);
     }
 }

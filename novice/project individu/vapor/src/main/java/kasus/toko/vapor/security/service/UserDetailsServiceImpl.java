@@ -13,7 +13,7 @@ import kasus.toko.vapor.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    
+
     @Autowired
     UserRepository userRepository;
 
@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(() ->
-            new UsernameNotFoundException("User not found" + username));
+                new UsernameNotFoundException("User not found" + username));
         return UserPrinciple.build(user);
     }
 }

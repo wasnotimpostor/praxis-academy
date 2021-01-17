@@ -62,7 +62,7 @@ public class MainController {
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
-        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>("GAGAL! -> Username Sudah Digunakan!", HttpStatus.BAD_REQUEST);
         }
 

@@ -15,18 +15,18 @@ public class Distribusi {
 
     @ManyToOne
     @JoinColumn(name = "id_toko", referencedColumnName = "id", insertable = false, updatable = false)
-    private AllToko allToko;
+    private Toko toko;
 
     @ManyToOne
     @JoinColumn(name = "id_barang", referencedColumnName = "id", insertable = false, updatable = false)
     private Barang barang;
 
-    public AllToko getAllToko() {
-        return allToko;
+    public Toko getAllToko() {
+        return toko;
     }
 
-    public void setAllToko(AllToko allToko) {
-        this.allToko = allToko;
+    public void setAllToko(Toko toko) {
+        this.toko = toko;
     }
 
     public Barang getBarang() {

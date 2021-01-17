@@ -18,7 +18,7 @@ public class Barang {
 
     private Integer price;
 
-    private Integer stock;
+    private String stock;
 
     public Long getId() {
         return id;
@@ -44,11 +44,11 @@ public class Barang {
         this.price = price;
     }
 
-    public Integer getStock() {
+    public String getStock() {
         return stock;
     }
 
-    public void setStock(Integer stock) {
+    public void setStock(String stock) {
         this.stock = stock;
     }
 }

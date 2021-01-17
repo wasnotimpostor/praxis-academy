@@ -36,7 +36,7 @@ public class VapeController {
             tokoVape.setPrice(newTokoVape.getPrice());
             tokoVape.setStock(newTokoVape.getStock());
             return tokoVapeRepo.save(tokoVape);
-        }) .orElseGet(() ->{
+        }).orElseGet(() -> {
             newTokoVape.setId(id);
             return tokoVapeRepo.save(newTokoVape);
         });

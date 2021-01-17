@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.Valid;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +35,7 @@ import kasus.toko.vapor.security.jwt.JwtProvider;
 @RestController
 @RequestMapping("/kasus")
 public class AuthRestAPI {
-    
+
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -59,21 +59,21 @@ public class AuthRestAPI {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginForm) {
- 
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginForm.getUsername(),
                         loginForm.getPassword()));
- 
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
- 
+
         String jwt = jwtProvider.generateJwtToken(authentication);
         return ResponseEntity.ok(new JwtResponse(jwt));
     }
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpForm) {
-        if(userRepository.existsByUsername(signUpForm.getUsername())) {
+        if (userRepository.existsByUsername(signUpForm.getUsername())) {
             return new ResponseEntity<String>("GAGAL! >> Username sudah dipakai!", HttpStatus.BAD_REQUEST);
         }
 
@@ -87,23 +87,23 @@ public class AuthRestAPI {
             switch (role) {
                 case "admin":
                     Role adminRole = roleRepository.findByNama(NamaRole.ROLE_ADMIN).orElseThrow(() ->
-                    new RuntimeException("GAGAL! Role tidak ditemukan!"));
+                            new RuntimeException("GAGAL! Role tidak ditemukan!"));
                     roles.add(adminRole);
                     break;
 
-                case "toko1" :
+                case "toko1":
                     Role toko1Role = roleRepository.findByNama(NamaRole.ROLE_TOKO1).orElseThrow(() ->
-                    new RuntimeException("GAGAL! Role tidak ditemukan!"));
+                            new RuntimeException("GAGAL! Role tidak ditemukan!"));
                     roles.add(toko1Role);
                     break;
                 case "toko2":
                     Role toko2Role = roleRepository.findByNama(NamaRole.ROLE_TOKO2).orElseThrow(() ->
-                    new RuntimeException("GAGAL! Role tidak ditemukan!"));
+                            new RuntimeException("GAGAL! Role tidak ditemukan!"));
                     roles.add(toko2Role);
                     break;
                 default:
                     Role buyerRole = roleRepository.findByNama(NamaRole.ROLE_BUYER).orElseThrow(() ->
-                    new RuntimeException("GAGAL! Role tidak ditemukan!"));
+                            new RuntimeException("GAGAL! Role tidak ditemukan!"));
                     roles.add(buyerRole);
                     break;
             }

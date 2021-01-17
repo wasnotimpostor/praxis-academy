@@ -12,8 +12,8 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "toko", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"id"}),
-    @UniqueConstraint(columnNames = {"id_barang"})
+        @UniqueConstraint(columnNames = {"id"}),
+        @UniqueConstraint(columnNames = {"id_barang"})
 })
 public class Toko1 {
     @Id
@@ -29,7 +29,7 @@ public class Toko1 {
     @ManyToOne
     @JoinColumn(name = "id_barang", referencedColumnName = "id", insertable = false, updatable = false)
     private Barang barang;
-    
+
     private Long id_barang;
 
     // public Long getIdBarang() {
