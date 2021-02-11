@@ -1,5 +1,4 @@
 package kasus;
-import java.util.Arrays;
 
 public class Baju extends Kasir {
     int hargaBaju;

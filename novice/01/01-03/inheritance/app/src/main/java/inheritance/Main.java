@@ -37,6 +37,5 @@ public class Main {
         lingkaran.keliling();
 
         mSegitiga.luas();
-        mSegitiga.keliling();
     }
 }

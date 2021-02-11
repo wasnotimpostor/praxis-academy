@@ -33,11 +33,11 @@ public class BarangController {
 
     @PutMapping("/barang/{id}/w/{quantity}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Barang withdrawBarang(@PathVariable Long id, String quantity) {
+    public Barang withdrawBarang(@PathVariable Long id, @PathVariable String quantity) {
         Barang barang = barangService.getBarang(id);
         String currQuantity = barang.getStock();
         int newQuantity = Integer.parseInt(currQuantity) - Integer.parseInt(quantity);
-        if(newQuantity < 1) {
+        if (newQuantity < 1) {
             System.out.println("new quantity negatif" + newQuantity + "jadi gak bisa withdraw");
             return barang;
         }
